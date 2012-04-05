@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/pc1_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="@string/s1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/pc1_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/pc1_myloc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/s1_myloc" />
+
+        <Button
+            android:id="@+id/pc1_chooseloc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/s1_chooseloc" />
+        <Button
+            android:id="@+id/pc1_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/s1_next" />
+        <Button
+            android:id="@+id/pc1_goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/s1_goback" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.google.android.maps.MapView
+            android:id="@+id/pc1_map"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:apiKey="0i5tLbLgAxf2NBRMXtLSJRrYgzrCaVo-Tq3B1gg"
+            android:clickable="true" />
+    </RelativeLayout>
+
+</LinearLayout>

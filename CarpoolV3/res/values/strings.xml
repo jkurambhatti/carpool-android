@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, TestUIActivity!</string>
+    <string name="app_name">CarpoolV3</string>
+    <string name="home_tv">我的家</string>
+    <string name="style_tv">搭配</string>
+    <string name="shopping_tv">逛街</string>
+    <string name="show_tv">晒货</string>
+    <string name="login_tv">登录</string>
+    <string name="regist_tv">注册</string>
+    <string name="index_sinaweibo_tv">新浪微博</string>
+    <string name="index_sinaweibo_info_tv">与您的新浪微博账号连接</string>
+    <string name="index_renren_tv">人人网</string>
+    <string name="index_renren_info_tv">与您的人人网账号连接</string>
+    <string name="reg_hello">欢迎注册Carpool</string>
+    <string name="reg_uname"> 用 户 名：</string>
+    <string name="reg_pwd"> 密      码：</string>
+    <string name="reg_pwdAssure">确认密码：</string>
+    <string name="reg_submit">提交</string>
+    <string name="reg_reset">重置</string>
+    <string name="cancel">取消</string>
+    <string name="searchHint">请输入搜索地点~</string>
+    <string name="searchLabel">搜索</string>
+    <string name="headPic">headPic.</string>
+    <string name="home_welcome">欢迎使用Carpool</string>
+    <string name="home_help">您可以：</string>
+    <string name="home_profile_tv">个人资料</string>
+    <string name="home_profile_info_tv">查看或修改您的个人资料</string>
+    <string name="home_pinche_tv">拼车</string>
+    <string name="home_pinche_info_tv">拼车或打车</string>
+    <string name="home_gis_tv">查询</string>
+    <string name="home_gis_info_tv">查询地点或路线</string>
+    <string name="home_osn_tv">社交网络扩展</string>
+    <string name="home_osn_info_tv">查看您的新浪微博或人人网账号状态</string>
+    <string name="home_logout_tv">登出</string>
+    <string name="home_logout_info_tv">登出您的账户</string>
+    <string name="s1">请选择您的起点</string>
+    <string name="s1_myloc">我的位置</string>
+    <string name="s1_chooseloc">在地图中选择</string>
+    <string name="s1_goback">返回</string>
+    <string name="s1_next">下一步</string>
+    <string name="s1_dlg1">你已选定起始点，是否提交？</string>
+    <string name="submit">提交</string>
+    <string name="goback">返回</string>
+    <string name="s2">请选择您的终点</string>
+    <string name="s2_dlg1">您已选定终点，是否提交？</string>
+    <string name="s2_dlg1_amount">拼车人数：</string>
+    <string name="s3">点击可查看详细信息</string>
+    <string name="lio_name">司机：</string>
+    <string name="lio_carVolume">出租车容量：</string>
+    <string name="lio_carNo">出租车牌号:</string>
+    <string name="lio_phone">手机：</string>
+    <string name="pinche">拼车</string>
+    <string name="dache">打车</string>
+
+</resources>

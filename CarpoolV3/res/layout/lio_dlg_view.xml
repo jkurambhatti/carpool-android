@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lio_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:text="@string/lio_name"
+        android:textSize="18dip" />
+
+    <TextView
+        android:id="@+id/lio_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/lio_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:text="@string/lio_carNo"
+        android:textSize="18dip" />
+
+    <TextView
+        android:id="@+id/lio_carno"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/lio_textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:text="@string/lio_carVolume"
+        android:textSize="18dip" />
+
+    <TextView
+        android:id="@+id/lio_carvolume"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/lio_textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:text="@string/lio_phone"
+        android:textSize="18dip" />
+
+    <TextView
+        android:id="@+id/lio_phone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip" >
+    </TextView>
+
+</LinearLayout>

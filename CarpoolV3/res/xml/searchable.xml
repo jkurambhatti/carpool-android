@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="@string/searchHint"
+    android:icon="@drawable/ic_launcher"
+    android:label="@string/searchLabel"
+    android:queryAfterZeroResults="false"
+    android:searchSuggestAuthority="com.debby.googlemap.SuggestionProvider"
+    android:searchSuggestSelection=" ? " >
+
+</searchable>
