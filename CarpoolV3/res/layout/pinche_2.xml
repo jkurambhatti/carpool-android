@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1.0" >
+
+    <com.google.android.maps.MapView
+        android:id="@+id/pc2_map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:apiKey="0i5tLbLgAxf2NBRMXtLSJRrYgzrCaVo-Tq3B1gg"
+        android:clickable="true" />
+
+    <TextView
+        android:id="@+id/pc2_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/s2"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/pc2_goback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:text="@string/goback" />
+
+</RelativeLayout>
