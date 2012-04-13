@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class CPRequest {
-	public static String url = "http://166.111.80.94:8080/CarpoolOnAndroid2/api/";
+	public static String url = "http://"+CPConstants.serverIP+":8080/CarpoolOnAndroid2/api/";
 
 	private String requestType;
 

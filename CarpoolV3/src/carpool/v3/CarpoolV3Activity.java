@@ -1,13 +1,15 @@
 package carpool.v3;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
@@ -34,11 +36,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import carpool.ui.CarpoolScrollView;
+import carpool.webcom.CPActivity;
+import carpool.webcom.CPConstants;
 import carpool.webcom.CPRequest;
 import carpool.webcom.CPResponse;
 import carpool.webcom.CPSession;
+import carpool.webcom.CPSocket;
 
-public class CarpoolV3Activity extends Activity implements OnGestureListener,
+import com.weibo.net.AccessToken;
+import com.weibo.net.DialogError;
+import com.weibo.net.Weibo;
+import com.weibo.net.WeiboDialogListener;
+import com.weibo.net.WeiboException;
+
+public class CarpoolV3Activity extends CPActivity implements OnGestureListener,
 		OnTouchListener {
 
 	private TextView date_TextView;
@@ -67,11 +78,12 @@ public class CarpoolV3Activity extends Activity implements OnGestureListener,
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(CarpoolV3Activity.this,
-						SinaWeiboAuthActivity.class);
-				startActivity(intent);
-
+				Weibo weibo = Weibo.getInstance();
+				weibo.setupConsumerConfig(CPSession.CONSUMER_KEY,
+						CPSession.CONSUMER_SECRET);
+				weibo.setRedirectUrl("http://www.sina.com");
+				weibo.authorize(CarpoolV3Activity.this,
+						new AuthDialogListener());
 			}
 		});
 		RelativeLayout r2 = (RelativeLayout) findViewById(R.id.renren);
@@ -158,8 +170,18 @@ public class CarpoolV3Activity extends Activity implements OnGestureListener,
 												.show();
 
 									} else {
+										JSONObject rlt = response.getJson();
+										JSONObject user = rlt
+												.getJSONObject("user");
+										CPSession.user.setPortrait(user
+												.getString("portrait"));
 										CPSession.user.setUsername(suname);
 										CPSession.user.setPassword(supwd);
+										CPSession.socket = new CPSocket(
+												CPConstants.serverIP, 8000);
+										CPSession.socket.activity = CarpoolV3Activity.this;
+										CPSession.socket.sendMsg("REGISTER"
+												+ suname);
 										Intent intent = new Intent();
 										intent.setClass(CarpoolV3Activity.this,
 												HomeActivity.class);
@@ -167,6 +189,12 @@ public class CarpoolV3Activity extends Activity implements OnGestureListener,
 
 									}
 								} catch (JSONException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (UnknownHostException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IOException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
@@ -401,5 +429,55 @@ public class CarpoolV3Activity extends Activity implements OnGestureListener,
 	private void toastInfo(String string) {
 		Toast.makeText(CarpoolV3Activity.this, string, Toast.LENGTH_SHORT)
 				.show();
+	}
+
+	class AuthDialogListener implements WeiboDialogListener {
+
+		@Override
+		public void onComplete(Bundle values) {
+			String token = values.getString("access_token");
+			String expires_in = values.getString("expires_in");
+			AccessToken accessToken = new AccessToken(token,
+					CPSession.CONSUMER_SECRET);
+			accessToken.setExpiresIn(expires_in);
+			CPSession.sina_token = accessToken;
+			Weibo.getInstance().setAccessToken(accessToken);
+			Intent intent = new Intent();
+			intent.setClass(CarpoolV3Activity.this, RegisterActivity.class);
+			startActivity(intent);
+		}
+
+		@Override
+		public void onError(DialogError e) {
+			Toast.makeText(getApplicationContext(),
+					"Auth error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void onCancel() {
+			Toast.makeText(getApplicationContext(), "Auth cancel",
+					Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void onWeiboException(WeiboException e) {
+			Toast.makeText(getApplicationContext(),
+					"Auth exception : " + e.getMessage(), Toast.LENGTH_LONG)
+					.show();
+		}
+
+	}
+
+	@Override
+	public void append(String str) {
+		// TODO Auto-generated method stub
+		
+
+	}
+
+	@Override
+	protected boolean isRouteDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

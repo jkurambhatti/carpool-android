@@ -1,6 +1,11 @@
 package carpool.ui;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.json.JSONException;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -14,9 +19,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import carpool.v3.HomeActivity;
-import carpool.v3.WaitActivity;
 import carpool.v3.R;
-
+import carpool.v3.WaitActivity;
+import carpool.webcom.CPRequest;
+import carpool.webcom.CPResponse;
 import carpool.webcom.CPSession;
 
 import com.google.android.maps.ItemizedOverlay;
@@ -91,7 +97,49 @@ public class LocationItemOverlay extends ItemizedOverlay<OverlayItem> {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
-							CPSession.waitTime = 10;
+							Map<String, String> args = new HashMap<String, String>();
+							args.put("passenger", CPSession.user.getUsername());
+							args.put("driver", CPSession.taxi.getDriver());
+							args.put("amount",
+									String.valueOf(CPSession.pinAmount));
+							args.put("status", "sending");
+							args.put(
+									"origin",
+									Math.round(CPSession.startPoint
+											.getLatitudeE6() / 1000.00)
+											/ 1000.0
+											+ ","
+											+ Math.round(CPSession.startPoint
+													.getLongitudeE6() / 1000.00)
+											/ 1000.0);
+							args.put(
+									"destination",
+									Math.round(CPSession.endPoint
+											.getLatitudeE6() / 1000.00)
+											/ 1000.0
+											+ ","
+											+ Math.round(CPSession.endPoint
+													.getLongitudeE6() / 1000.00)
+											/ 1000.0);
+							args.put("time",
+									String.valueOf(new Date().getTime()));
+							CPRequest request = new CPRequest("sendRequest",
+									args);
+							CPResponse response = request.request();
+							try {
+								if (response.getJson().getString("errorMsg") == "null") {
+									CPSession.requestId = Integer
+											.parseInt(response.getJson()
+													.getString("requestid"));
+									Intent intent = new Intent();
+									intent.setClass(context, WaitActivity.class);
+									context.startActivity(intent);
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
 							Intent intent = new Intent();
 							intent.setClass(context, WaitActivity.class);
 							context.startActivity(intent);

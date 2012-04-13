@@ -56,6 +56,10 @@ public class PathOverlay extends Overlay {
 					canvas.drawLine(start.x, start.y, end.x, end.y, paint);
 					start = end;
 				}
+				projection.toPixels(CPSession.startPoint, start);
+				canvas.drawBitmap(this.marker, start.x - 16, start.y - 32,
+						paint);
+
 			}
 		}
 	}
