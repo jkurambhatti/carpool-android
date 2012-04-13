@@ -21,7 +21,7 @@ public class Pinche2Activity extends MapActivity {
 		mapView = (MapView) findViewById(R.id.pc2_map);
 		mapView.setBuiltInZoomControls(true);
 		mc = mapView.getController();
-		mc.setZoom(14);
+		mc.setZoom(18);
 		LongPressOverlay lpOverlay = new LongPressOverlay(mapView, false);
 		mapView.getOverlays().clear();
 		mapView.getOverlays().add(lpOverlay);

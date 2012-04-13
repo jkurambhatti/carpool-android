@@ -35,6 +35,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".SinaWeiboActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".GISActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" >
@@ -49,18 +53,8 @@
         </activity>
         <activity
             android:name=".SinaWeiboAuthActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleInstance" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="AuthActivity"
-                    android:scheme="myapp" />
-            </intent-filter>
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".PincheActivity"
@@ -78,9 +72,18 @@
             android:name=".WaitActivity"
             android:label="@string/app_name" >
         </activity>
-    </application>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
+        </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_lOCATION" />
 

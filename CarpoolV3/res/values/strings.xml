@@ -53,5 +53,20 @@
     <string name="lio_phone">手机：</string>
     <string name="pinche">拼车</string>
     <string name="dache">打车</string>
-
+    <string name="profile_1">与新浪微博同步资料</string>
+    <string name="profile_2">与人人网同步资料</string>
+    <string name="profile_3">昵称：</string>
+    <string name="profile_4">手机：</string>
+    <string name="profile_5">性别：</string>
+    <string name="profile_6">男</string>
+    <string name="profile_7">女</string>
+    <string name="profile_8">提交</string>
+    <string name="profile_9">重置</string>
+    <string name="sinaweibo_1">获取最新微博</string>
+    <string name="sinaweibo_2">发表微博</string>
+    <string name="sinaweibo_send">发布</string>
+    <string name="getnear_1">抱歉，当前没有合适的出租车，您可以：</string>
+    <string name="getnear_2">选择最近出租车</string>
+    <string name="getnear_3">返回首页</string>
+    <string name="wait_1">正在为您确认出租车，请稍等。</string>
 </resources>

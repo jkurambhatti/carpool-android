@@ -29,6 +29,7 @@ public class RegisterActivity extends Activity {
 		upwdText = (EditText) findViewById(R.id.register_password);
 		upwdAssureText = (EditText) findViewById(R.id.register_pwdAssure);
 
+
 		submitButton.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -74,7 +75,14 @@ public class RegisterActivity extends Activity {
 					args.put("nickname", username);
 					args.put("password", password);
 					args.put("isdriver", "false");
-					CPRequest request = new CPRequest("login", args);
+					if (CPSession.sina_token != null) {
+						args.put("accessid", CPSession.sina_token.getToken());
+						args.put("accesskey", Long
+								.toString(CPSession.sina_token.getExpiresIn()));
+						args.put("accessscrt", CPSession.sina_token.getSecret());
+						args.put("oauthtype", "SINA");
+					}
+					CPRequest request = new CPRequest("register", args);
 					CPResponse response = request.request();
 					System.out.println(response.getJson().toString());
 					Toast.makeText(RegisterActivity.this, "注册成功",

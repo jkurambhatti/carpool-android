@@ -39,7 +39,7 @@ public class PincheActivity extends MapActivity {
 		mapView = (MapView) findViewById(R.id.pc1_map);
 		mapView.setBuiltInZoomControls(true);
 		mc = mapView.getController();
-		mc.setZoom(14);
+		mc.setZoom(18);
 
 		myLoc = (Button) findViewById(R.id.pc1_myloc);
 		chooseLoc = (Button) findViewById(R.id.pc1_chooseloc);

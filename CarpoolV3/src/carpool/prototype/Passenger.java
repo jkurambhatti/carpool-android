@@ -7,6 +7,7 @@ public class Passenger {
 	private String nickname;
 	private String mobilephone;
 	private String gender;
+	private String portrait;
 	
 	public String getUsername() {
 		return username;
@@ -37,5 +38,11 @@ public class Passenger {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public String getPortrait() {
+		return portrait;
+	}
+	public void setPortrait(String portrait) {
+		this.portrait = portrait;
 	}
 }
