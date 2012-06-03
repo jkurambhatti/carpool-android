@@ -1,6 +1,7 @@
 package carpool.v3;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +15,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 import carpool.ui.CarpoolScrollView;
 import carpool.webcom.CPActivity;
@@ -105,7 +108,58 @@ public class CarpoolV3Activity extends CPActivity implements OnGestureListener,
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				toastInfo("设置属性");
+				LayoutInflater factory = LayoutInflater
+						.from(CarpoolV3Activity.this);
+				final View settingDlgView = factory.inflate(
+						R.layout.settings_view, null);
+				TextView tv = (TextView) settingDlgView
+						.findViewById(R.id.settings_tv);
+				tv.setText("是否使用GPS定位:");
+				ToggleButton tb = (ToggleButton) settingDlgView
+						.findViewById(R.id.settings_tb);
+				SharedPreferences useGPS = getSharedPreferences("use_GPS", 0);
+				Boolean ifUseGPS = useGPS.getBoolean("useGPS", false);
+				tb.setChecked(ifUseGPS);
+				Builder builder = new AlertDialog.Builder(
+						CarpoolV3Activity.this);
+				builder.setIcon(R.drawable.login);
+				builder.setTitle("环境设置");
+				builder.setView(settingDlgView);
+				builder.setPositiveButton(R.string.submit,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+								ToggleButton tb = (ToggleButton) settingDlgView
+										.findViewById(R.id.settings_tb);
+								SharedPreferences useGPS = getSharedPreferences(
+										"use_GPS", 0);
+								if (tb.isChecked() == true) {
+									useGPS.edit().putBoolean("useGPS", true)
+											.commit();
+								} else {
+									useGPS.edit().putBoolean("useGPS", false)
+											.commit();
+								}
+
+							}
+						});
+				builder.setNegativeButton(R.string.cancel,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+								dialog.cancel();
+							}
+
+						});
+				AlertDialog dlg = builder.create();
+				dlg.show();
+
 			}
 		});
 
@@ -134,8 +188,10 @@ public class CarpoolV3Activity extends CPActivity implements OnGestureListener,
 						.findViewById(R.id.login_username);
 				EditText upwd = (EditText) loginDlgView
 						.findViewById(R.id.login_password);
-				uname.setText("pass1");
-				upwd.setText("pass1");
+				SharedPreferences userInfo = getSharedPreferences("user_info",
+						0);
+				uname.setText(userInfo.getString("name", ""));
+				upwd.setText(userInfo.getString("pass", ""));
 				Builder builder = new AlertDialog.Builder(
 						CarpoolV3Activity.this);
 				builder.setIcon(R.drawable.login);
@@ -154,50 +210,109 @@ public class CarpoolV3Activity extends CPActivity implements OnGestureListener,
 										.findViewById(R.id.login_password);
 								String suname = uname.getText().toString();
 								String supwd = upwd.getText().toString();
-								Map<String, String> args = new HashMap<String, String>();
-								args.put("nickname", suname);
-								args.put("password", supwd);
-
-								CPRequest request = new CPRequest("login", args);
-								CPResponse response = request.request();
-								System.out.println(response.getJson()
-										.toString());
-								try {
-									if (response.getJson().get("errorMsg")
-											.toString().compareTo("null") != 0) {
-										Toast.makeText(CarpoolV3Activity.this,
-												"用户名/密码错误", Toast.LENGTH_SHORT)
-												.show();
-
-									} else {
-										JSONObject rlt = response.getJson();
-										JSONObject user = rlt
-												.getJSONObject("user");
-										CPSession.user.setPortrait(user
-												.getString("portrait"));
-										CPSession.user.setUsername(suname);
-										CPSession.user.setPassword(supwd);
-										CPSession.socket = new CPSocket(
-												CPConstants.serverIP, 8000);
-										CPSession.socket.activity = CarpoolV3Activity.this;
-										CPSession.socket.sendMsg("REGISTER"
-												+ suname);
-										Intent intent = new Intent();
-										intent.setClass(CarpoolV3Activity.this,
-												HomeActivity.class);
-										startActivity(intent);
-
+								if (suname.compareTo("") == 0
+										|| supwd.compareTo("") == 0) {
+									Toast.makeText(CarpoolV3Activity.this,
+											"请填写内容", Toast.LENGTH_LONG).show();
+									Field field;
+									try {
+										field = dialog.getClass()
+												.getSuperclass()
+												.getDeclaredField("mShowing");
+										field.setAccessible(true);
+										field.set(dialog, false);
+									} catch (SecurityException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (NoSuchFieldException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IllegalArgumentException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IllegalAccessException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
 									}
-								} catch (JSONException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (UnknownHostException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+
+								} else {
+									Map<String, String> args = new HashMap<String, String>();
+									args.put("nickname", suname);
+									args.put("password", supwd);
+
+									CPRequest request = new CPRequest("login",
+											args);
+									CPResponse response = request.request();
+									System.out.println(response.getJson()
+											.toString());
+									try {
+										if (response.getJson().get("errorMsg")
+												.toString().compareTo("null") != 0) {
+											Toast.makeText(
+													CarpoolV3Activity.this,
+													"用户名/密码错误",
+													Toast.LENGTH_SHORT).show();
+
+										} else {
+											JSONObject rlt = response.getJson();
+											JSONObject user = rlt
+													.getJSONObject("user");
+											CPSession.user.setPortrait(user
+													.getString("portrait"));
+											CPSession.user.setUsername(suname);
+											CPSession.user.setPassword(supwd);
+											SharedPreferences userInfo = getSharedPreferences(
+													"user_info", 0);
+											userInfo.edit()
+													.putString("name", suname)
+													.commit();
+											userInfo.edit()
+													.putString("pass", supwd)
+													.commit();
+											CPSession.socket = new CPSocket(
+													CPConstants.serverIP, 8000);
+											CPSession.socket.activity = CarpoolV3Activity.this;
+											CPSession.socket.sendMsg("REGISTER"
+													+ suname);
+											Intent intent = new Intent();
+											intent.setClass(
+													CarpoolV3Activity.this,
+													HomeActivity.class);
+											// 关闭dialog
+											Field field = dialog
+													.getClass()
+													.getSuperclass()
+													.getDeclaredField(
+															"mShowing");
+											field.setAccessible(true);
+											field.set(dialog, true);
+											startActivity(intent);
+
+										}
+									} catch (JSONException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (UnknownHostException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (SecurityException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (NoSuchFieldException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IllegalArgumentException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (IllegalAccessException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
 								}
+
 							}
 						});
 				builder.setNegativeButton(R.string.cancel,
@@ -471,7 +586,6 @@ public class CarpoolV3Activity extends CPActivity implements OnGestureListener,
 	@Override
 	public void append(String str) {
 		// TODO Auto-generated method stub
-		
 
 	}
 
