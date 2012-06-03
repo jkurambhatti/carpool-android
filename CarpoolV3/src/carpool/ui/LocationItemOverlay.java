@@ -164,7 +164,7 @@ public class LocationItemOverlay extends ItemizedOverlay<OverlayItem> {
 			return true;
 		} else {
 			Toast.makeText(context,
-					items.get(i).getTitle() + "\n" + items.get(i).getSnippet(),
+					"我的位置",
 					Toast.LENGTH_LONG).show();
 			return true;
 

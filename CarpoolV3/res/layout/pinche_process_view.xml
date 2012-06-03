@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title_ry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+
+        <include layout="@layout/pinche_title_view" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0" >
+
+        <com.google.android.maps.MapView
+            android:id="@+id/pc_map"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:apiKey="0i5tLbLgAxf2NBRMXtLSJRrYgzrCaVo-Tq3B1gg"
+            android:clickable="true" >
+        </com.google.android.maps.MapView>
+
+        <Spinner
+            android:id="@+id/ptv_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/ptv_spinner2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/ppv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="提交拼车" />
+    </RelativeLayout>
+
+</LinearLayout>
