@@ -37,7 +37,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="160dip"
+                        android:layout_height="360dip"
                         android:background="@drawable/default_pic_1" />
                 </LinearLayout>
 
@@ -48,7 +48,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="160dip"
+                        android:layout_height="360dip"
                         android:background="@drawable/default_pic_2" />
                 </LinearLayout>
 
@@ -59,7 +59,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="160dip"
+                        android:layout_height="360dip"
                         android:background="@drawable/default_pic_3" />
                 </LinearLayout>
 
@@ -70,7 +70,7 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="160dip"
+                        android:layout_height="360dip"
                         android:background="@drawable/default_pic_4" />
                 </LinearLayout>
             </ViewFlipper>
@@ -91,14 +91,6 @@
                 android:layout_below="@id/home_date_ratio_ly" >
 
                 <include layout="@layout/home_user_layout" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/home_user_layout_ly" >
-
-                <include layout="@layout/home_select_list_layout" />
             </LinearLayout>
         </RelativeLayout>
     </carpool.ui.CarpoolScrollView>

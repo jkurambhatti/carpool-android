@@ -14,12 +14,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile_1" />
-
-        <Button
-            android:id="@+id/profile_btn_renren"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profile_2" />
     </LinearLayout>
 
     <LinearLayout
@@ -112,13 +106,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile_8" />
-
+
         <Button
             android:id="@+id/profile_btn_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile_9" />
-
     </LinearLayout>
 
 </LinearLayout>
