@@ -202,11 +202,13 @@ public class PincheProcessActivity extends CPActivity {
 		double lat = location.getLatitude();
 		double lng = location.getLongitude();
 		GeoPoint gp = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
-		Toast.makeText(PincheProcessActivity.this, gp.toString(), Toast.LENGTH_LONG).show();
+		Toast.makeText(PincheProcessActivity.this, gp.toString(),
+				Toast.LENGTH_LONG).show();
 		if (ifUseGPS) {
 			GoogleMapviewOffsetEraser eraser = new GoogleMapviewOffsetEraser();
 			gp = eraser.erase(gp);
-			Toast.makeText(PincheProcessActivity.this, gp.toString(), Toast.LENGTH_LONG).show();
+			Toast.makeText(PincheProcessActivity.this, gp.toString(),
+					Toast.LENGTH_LONG).show();
 		}
 		mapCtrl.animateTo(gp);
 		List<OverlayItem> overlayitems = new ArrayList<OverlayItem>();
@@ -225,7 +227,6 @@ public class PincheProcessActivity extends CPActivity {
 			double lat = arg0.getLatitude();
 			double lng = arg0.getLongitude();
 			GeoPoint gp = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
-			mapCtrl.animateTo(gp);
 		}
 
 		@Override

@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -39,7 +41,7 @@ public class HomeActivity extends CPActivity {
 		ImageView portrait = (ImageView) findViewById(R.id.home_headpic_iv);
 		Looper looper = Looper.myLooper();
 		handler = new MessageHandler(looper, this);
-//		CPSession.socket.activity = this;
+		// CPSession.socket.activity = this;
 		if (CPSession.user.getPortrait() != "null") {
 			portrait.setImageBitmap(returnBitmap(CPSession.user.getPortrait()));
 		}
@@ -199,7 +201,8 @@ public class HomeActivity extends CPActivity {
 						Toast.makeText(HomeActivity.this, "地理信息服务",
 								Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent();
-						intent.setClass(HomeActivity.this, GISActivity.class);
+						intent.setClass(HomeActivity.this,
+								GISActivity.class);
 						startActivity(intent);
 
 					}
@@ -247,7 +250,7 @@ public class HomeActivity extends CPActivity {
 								Toast.LENGTH_SHORT).show();
 						Intent intent = new Intent();
 						intent.setClass(HomeActivity.this,
-								RenrenAuthActivity.class);
+								RenrenActivity.class);
 						startActivity(intent);
 
 					}
@@ -263,4 +266,5 @@ public class HomeActivity extends CPActivity {
 				R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6,
 				R.drawable.p7, R.drawable.p8, };
 	}
+
 }

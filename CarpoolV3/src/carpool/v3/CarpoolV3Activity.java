@@ -75,33 +75,6 @@ public class CarpoolV3Activity extends CPActivity implements OnGestureListener,
 		setContentView(R.layout.main);
 		date_TextView = (TextView) findViewById(R.id.home_date_tv);
 		date_TextView.setText(getDate());
-		RelativeLayout r1 = (RelativeLayout) findViewById(R.id.sinaweibo);
-		r1.setOnClickListener(new RelativeLayout.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Weibo weibo = Weibo.getInstance();
-				weibo.setupConsumerConfig(CPSession.CONSUMER_KEY,
-						CPSession.CONSUMER_SECRET);
-				weibo.setRedirectUrl("http://www.sina.com");
-				weibo.authorize(CarpoolV3Activity.this,
-						new AuthDialogListener());
-			}
-		});
-		RelativeLayout r2 = (RelativeLayout) findViewById(R.id.renren);
-		r2.setOnClickListener(new RelativeLayout.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(CarpoolV3Activity.this,
-						RenrenAuthActivity.class);
-				startActivity(intent);
-
-			}
-		});
 		set_ImageButton = (ImageButton) findViewById(R.id.title_set_bn);
 		set_ImageButton.setOnClickListener(new OnClickListener() {
 

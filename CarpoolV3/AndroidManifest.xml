@@ -7,12 +7,24 @@
     <uses-sdk android:minSdkVersion="8" />
 
     <application
+        android:name=".BMap"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
 
         <!-- 切记加入导入语句，不然会报NoClassDefFoundError -->
         <uses-library android:name="com.google.android.maps" />
 
+        <!-- renren sdk 中的Activity -->
+        <activity
+            android:name="com.renren.api.connect.android.AuthorizationHelper$BlockActivity"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity android:name="com.renren.api.connect.android.status.StatusPubActivity" >
+        </activity>
+        <activity
+            android:name=".GISActivity"
+            android:label="@string/app_name" >
+        </activity>
         <activity
             android:name=".CarpoolV3Activity"
             android:label="@string/app_name" >
@@ -35,29 +47,15 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".RenrenAuthActivity"
+            android:name=".PincheInfoActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".RenrenActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".SinaWeiboActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name=".GISActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" >
-            </meta-data>
-        </activity>
-        <activity
-            android:name=".SinaWeiboAuthActivity"
-            android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -81,5 +79,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_lOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>

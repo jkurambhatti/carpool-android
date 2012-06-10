@@ -35,7 +35,6 @@ public class ProfileActivity extends Activity {
 
 		setContentView(R.layout.profile_layout);
 		Button SinaBtn = (Button) findViewById(R.id.profile_btn_sina);
-		Button RenrenBtn = (Button) findViewById(R.id.profile_btn_renren);
 		Button submitBtn = (Button) findViewById(R.id.profile_btn_submit);
 		Button resetBtn = (Button) findViewById(R.id.profile_btn_reset);
 		et_name = (EditText) findViewById(R.id.profile_et_name);

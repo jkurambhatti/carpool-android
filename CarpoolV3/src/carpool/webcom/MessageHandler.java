@@ -21,19 +21,9 @@ public class MessageHandler extends Handler {
 		} else if (msg.obj.equals("[0]GETON")) {
 			Toast.makeText(activity, "上车确认", Toast.LENGTH_LONG).show();
 		} else if (msg.obj.equals("[0]GETOFF")) {
-			Toast.makeText(activity, "下车确认,您将被重定位到主页", Toast.LENGTH_LONG)
+			Toast.makeText(activity, "下车确认", Toast.LENGTH_LONG)
 					.show();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			CPSession.clear();
-			Intent intent = new Intent();
-			intent.setClass(activity, HomeActivity.class);
-			activity.startActivity(intent);
-			activity.finish();
 		}
 	}
 }
